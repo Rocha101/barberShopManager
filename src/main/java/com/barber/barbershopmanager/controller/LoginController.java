@@ -34,7 +34,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody LoginRequest loginRequest) {
+    public Map<String, Object> login(@RequestBody LoginRequest loginRequest) {
         try {
             // Perform authentication logic here
             Barber barber = barberRepository.findByEmail(loginRequest.getEmail());
@@ -43,8 +43,10 @@ public class LoginController {
                 // Authentication successful, generate JWT token
                 String token = generateJwtToken(barber.getId()); // Customize this based on your needs
 
-                Map<String, String> response = new HashMap<>();
+                Map<String, Object> response = new HashMap<>();
                 response.put("token", token);
+                response.put("data", barber); // Incluindo os dados do Barber
+
                 return response;
             } else {
                 throw new Exception("Invalid credentials");
