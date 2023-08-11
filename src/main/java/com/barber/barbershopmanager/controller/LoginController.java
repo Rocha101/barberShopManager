@@ -3,21 +3,16 @@ package com.barber.barbershopmanager.controller;
 import com.barber.barbershopmanager.model.Barber;
 import com.barber.barbershopmanager.model.LoginRequest;
 import com.barber.barbershopmanager.repositories.BarberRepository;
-import com.barber.barbershopmanager.service.BarberService;
-import com.barber.barbershopmanager.service.LoginService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +29,7 @@ public class LoginController {
     private final KeyPair keyPair = Keys.keyPairFor(SignatureAlgorithm.RS256);
 
     @Autowired
-    public LoginController(LoginService loginService, BarberRepository barberRepository) {
+    public LoginController(BarberRepository barberRepository) {
         this.barberRepository = barberRepository;
     }
 
@@ -55,7 +50,6 @@ public class LoginController {
                 throw new Exception("Invalid credentials");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("Authentication failed");
         }
     }

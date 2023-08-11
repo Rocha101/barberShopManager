@@ -17,6 +17,12 @@ public class BarberService {
     }
 
     public Barber createBarber(Barber barber) {
+        Barber existingBarber = action.findByEmail(barber.getEmail());
+
+        if (existingBarber != null) {
+            throw new IllegalArgumentException("Email is already in use");
+        }
+
         return action.save(barber);
     }
 }
