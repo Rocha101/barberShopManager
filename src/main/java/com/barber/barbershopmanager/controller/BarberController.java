@@ -36,19 +36,8 @@ public class BarberController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Barber> updateBarber(@PathVariable Long id, @RequestBody Barber updatedBarber) {
-        Optional<Barber> existingBarber = barberService.getBarberById(id);
-
-        if (existingBarber.isPresent()) {
-            Barber barber = existingBarber.get();
-            barber.setUsername(updatedBarber.getUsername());
-
-
-            Barber savedBarber = barberService.updateBarber(barber);
-            return ResponseEntity.ok(savedBarber);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping
+    public Barber updateBarber(@RequestBody Barber newBarber) {
+        return barberService.updateBarber(newBarber);
     }
 }
