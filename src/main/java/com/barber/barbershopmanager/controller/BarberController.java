@@ -40,4 +40,16 @@ public class BarberController {
     public Barber updateBarber(@RequestBody Barber newBarber) {
         return barberService.updateBarber(newBarber);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> removeBarber(@PathVariable Long id) {
+        Optional<Barber> barber = barberService.getBarberById(id);
+
+        if (barber.isPresent()) {
+            barberService.removeBarber(id);
+            return ResponseEntity.ok("Barber with ID " + id + " has been deleted.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

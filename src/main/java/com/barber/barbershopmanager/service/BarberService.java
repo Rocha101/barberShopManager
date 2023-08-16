@@ -5,9 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.barber.barbershopmanager.model.Barber;
 import com.barber.barbershopmanager.repositories.BarberRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+
+import static java.lang.Math.toIntExact;
 
 @Service
 public class BarberService {
@@ -44,7 +45,13 @@ public class BarberService {
     }
 
     public Optional<Barber> getBarberById(Long id) {
-        return barberRepository.findById(Math.toIntExact(id));
+        return barberRepository.findById(toIntExact(id));
     }
 
+    public void removeBarber(Long id) {
+        Barber barber = getBarberById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Barber not found with ID: " + id));
+
+        barberRepository.delete(barber);
+    }
 }
