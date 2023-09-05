@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalTime;
+
 @Entity
 @Table(name = "user")
 public class Barber {
@@ -16,6 +18,10 @@ public class Barber {
     private String email;
     private String phone;
     private String password;
+
+    private String start_time;
+
+    private String end_time;
 
     // Getters and setters
     public Long getId() {
@@ -58,4 +64,20 @@ public class Barber {
         this.password = password;
     }
 
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
 }

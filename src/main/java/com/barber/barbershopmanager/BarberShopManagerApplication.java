@@ -10,4 +10,6 @@ public class BarberShopManagerApplication {
         SpringApplication.run(BarberShopManagerApplication.class, args);
     }
 
+
+
 }
