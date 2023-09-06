@@ -47,7 +47,7 @@ public class BarberController {
 
         if (barber.isPresent()) {
             barberService.removeBarber(id);
-            return ResponseEntity.ok("Barber with ID " + id + " has been deleted.");
+            return ResponseEntity.ok("Barbeiro with ID " + id + " has been deleted.");
         } else {
             return ResponseEntity.notFound().build();
         }
