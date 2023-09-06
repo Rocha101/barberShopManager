@@ -1,4 +1,4 @@
-package com.barber.barbershopmanager.model;
+package com.barber.barbershopmanager.controller;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -34,4 +34,6 @@ public class TimeIntervalCalculator {
 //            System.out.println(interval);
 //        }
 //    }
+
+
 }

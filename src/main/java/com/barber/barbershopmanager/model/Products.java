@@ -10,4 +10,5 @@ public class Products extends EntityId{
 
     Blob image;
 
+    StatusProduct status;
 }

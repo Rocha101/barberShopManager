@@ -28,7 +28,7 @@ public class BarberService {
         Barber existingBarber = barberRepository.findByEmail(barber.getEmail());
 
         if (existingBarber != null) {
-            throw new IllegalArgumentException("Email is already in use");
+            throw new IllegalArgumentException("Email já está em uso");
         }
 
         return barberRepository.save(barber);
@@ -38,7 +38,7 @@ public class BarberService {
         Barber existingBarber = barberRepository.findByEmail(barber.getEmail());
 
         if (existingBarber != null) {
-            throw new IllegalArgumentException("Email is already in use");
+            throw new IllegalArgumentException("Email já está em uso");
         }
 
         return barberRepository.save(barber);
@@ -50,7 +50,7 @@ public class BarberService {
 
     public void removeBarber(Long id) {
         Barber barber = getBarberById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Barber not found with ID: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Barbeiro não encontrado com o id: " + id));
 
         barberRepository.delete(barber);
     }

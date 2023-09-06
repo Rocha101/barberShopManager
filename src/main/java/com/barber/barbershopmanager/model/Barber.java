@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "barber")
 public class Barber {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,9 @@ public class Barber {
     private String phone;
     private String password;
 
-    private String start_time;
+    private LocalTime start_time;
 
-    private String end_time;
+    private LocalTime end_time;
 
     // Getters and setters
     public Long getId() {
@@ -65,19 +65,19 @@ public class Barber {
     }
 
 
-    public String getStart_time() {
+    public LocalTime getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(String start_time) {
+    public void setStart_time(LocalTime start_time) {
         this.start_time = start_time;
     }
 
-    public String getEnd_time() {
+    public LocalTime getEnd_time() {
         return end_time;
     }
 
-    public void setEnd_time(String end_time) {
+    public void setEnd_time(LocalTime end_time) {
         this.end_time = end_time;
     }
 }
