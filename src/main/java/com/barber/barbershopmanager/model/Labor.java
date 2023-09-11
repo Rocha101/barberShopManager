@@ -1,6 +1,14 @@
 package com.barber.barbershopmanager.model;
 
-public class Service extends EntityId{
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "labor")
+public class Labor extends EntityId{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     String description;
 
     String total_time;
@@ -29,5 +37,15 @@ public class Service extends EntityId{
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 }
