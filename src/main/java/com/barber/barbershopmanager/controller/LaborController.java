@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/services")
-public class ServiceController {
+@RequestMapping("/api/labor")
+public class LaborController {
     private final LaborService laborService;
 
     @Autowired
-    public ServiceController(LaborService laborService) {
+    public LaborController(LaborService laborService) {
         this.laborService = laborService;
     }
 

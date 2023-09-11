@@ -8,7 +8,8 @@ public class Labor extends EntityId{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
+
     String description;
 
     String total_time;
@@ -39,13 +40,5 @@ public class Labor extends EntityId{
         this.price = price;
     }
 
-    @Override
-    public Long getId() {
-        return id;
-    }
 
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

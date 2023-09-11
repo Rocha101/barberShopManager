@@ -1,12 +1,9 @@
 package com.barber.barbershopmanager.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 public class EntityId {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     Long id;
 
     public Long getId() {
