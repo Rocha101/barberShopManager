@@ -11,14 +11,19 @@ public class Products extends EntityId{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+    @Column(name = "description")
     String description;
+    @Column(name = "quantity")
     Integer quantity;
 
+    @Column(name = "price")
     Integer price;
 
     //    Blob image; <-- Como implementar???
+    @Column(name = "image")
     String image;
 
+    @Column(name = "status")
     StatusProduct status;
 
     public Products(String description, Integer quantity, Integer price, String image, StatusProduct status) {

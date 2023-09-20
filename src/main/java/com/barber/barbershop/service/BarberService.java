@@ -35,17 +35,11 @@ public class BarberService {
     }
 
     public Barber updateBarber(Barber barber) {
-        Barber existingBarber = barberRepository.findByEmail(barber.getEmail());
-
-        if (existingBarber != null) {
-            throw new IllegalArgumentException("Email já está em uso");
-        }
-
         return barberRepository.save(barber);
     }
 
     public Optional<Barber> getBarberById(Long id) {
-        return barberRepository.findById(toIntExact(id));
+        return Optional.ofNullable(barberRepository.findById(id));
     }
 
     public void removeBarber(Long id) {
