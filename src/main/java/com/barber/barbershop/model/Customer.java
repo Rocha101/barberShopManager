@@ -1,10 +1,22 @@
 package com.barber.barbershop.model;
 
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Customer")
 public class Customer extends EntityId {
-    String name;
-    String email;
-    String phone;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phone")
+    private String phone;
 
     public String getName() {
         return name;
