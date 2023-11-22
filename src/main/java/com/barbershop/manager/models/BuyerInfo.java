@@ -13,8 +13,9 @@ public class BuyerInfo {
     private String phone;
     private String document;
 
-    @OneToMany(mappedBy = "customerInfo")
-    private List<Sale> sales;
+    @ManyToOne
+    @JoinColumn(name = "buyerInfo")
+    private Sale sale;
 
     // getters and setters
 
@@ -50,11 +51,11 @@ public class BuyerInfo {
         this.document = document;
     }
 
-    public List<Sale> getSales() {
-        return sales;
+    public Sale getSale() {
+        return sale;
     }
 
-    public void setSales(List<Sale> sales) {
-        this.sales = sales;
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 }

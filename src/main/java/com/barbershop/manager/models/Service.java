@@ -20,8 +20,9 @@ public class Service {
     @OneToMany(mappedBy = "service")
     private List<Event> events;
 
-    @OneToMany(mappedBy = "service")
-    private List<Schedule> schedules;
+    @ManyToOne
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
 
     // getters and setters
 
@@ -73,11 +74,11 @@ public class Service {
         this.events = events;
     }
 
-    public List<Schedule> getSchedules() {
-        return schedules;
+    public Schedule getSchedule() {
+        return schedule;
     }
 
-    public void setSchedules(List<Schedule> schedules) {
-        this.schedules = schedules;
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 }

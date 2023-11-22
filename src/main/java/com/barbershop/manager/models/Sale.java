@@ -10,9 +10,8 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(name = "customer_info_id", insertable = false, updatable = false)
     private Long customerInfoId;
-
     private Float totalPrice;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -23,15 +22,14 @@ public class Sale {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "customerInfoId")
-    private BuyerInfo customerInfo;
-
-    @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
 
     @OneToMany(mappedBy = "sale")
     private List<Product> products;
+
+    @OneToMany(mappedBy = "sale")
+    private List<BuyerInfo> buyerInfos;
 
     // getters and setters
 
@@ -75,13 +73,6 @@ public class Sale {
         this.updatedAt = updatedAt;
     }
 
-    public BuyerInfo getCustomerInfo() {
-        return customerInfo;
-    }
-
-    public void setCustomerInfo(BuyerInfo customerInfo) {
-        this.customerInfo = customerInfo;
-    }
 
     public User getUser() {
         return user;
@@ -97,6 +88,15 @@ public class Sale {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+
+    public List<BuyerInfo> getBuyerInfos() {
+        return buyerInfos;
+    }
+
+    public void setBuyerInfos(List<BuyerInfo> buyerInfos) {
+        this.buyerInfos = buyerInfos;
     }
 }
 
