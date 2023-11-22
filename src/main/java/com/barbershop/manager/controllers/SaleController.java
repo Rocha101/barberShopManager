@@ -1,6 +1,5 @@
 package com.barbershop.manager.controllers;
 
-import com.barbershop.manager.models.BuyerInfo;
 import com.barbershop.manager.models.Sale;
 import com.barbershop.manager.repositories.BuyerInfoRepository;
 import com.barbershop.manager.repositories.SaleRepository;
