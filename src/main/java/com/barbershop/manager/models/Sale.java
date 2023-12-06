@@ -111,5 +111,6 @@ public class Sale {
     protected void onUpdate() {
         updatedAt = new Date();
     }
+
 }
 
