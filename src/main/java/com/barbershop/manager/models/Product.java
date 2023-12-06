@@ -1,6 +1,7 @@
 package com.barbershop.manager.models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Product {
@@ -20,6 +21,14 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "saleId")
     private Sale sale;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     // getters and setters
 
@@ -77,5 +86,17 @@ public class Product {
 
     public void setSale(Sale sale) {
         this.sale = sale;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        Date currentDate = new Date();
+        createdAt = currentDate;
+        updatedAt = currentDate;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }

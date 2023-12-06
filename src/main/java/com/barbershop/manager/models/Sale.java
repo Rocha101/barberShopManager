@@ -15,10 +15,11 @@ public class Sale {
     private Float totalPrice;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     @ManyToOne
@@ -97,6 +98,18 @@ public class Sale {
 
     public void setBuyerInfos(List<BuyerInfo> buyerInfos) {
         this.buyerInfos = buyerInfos;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        Date currentDate = new Date();
+        createdAt = currentDate;
+        updatedAt = currentDate;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }
 

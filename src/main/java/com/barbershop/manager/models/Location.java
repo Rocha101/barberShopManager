@@ -75,4 +75,16 @@ public class Location {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    @PrePersist
+    protected void onCreate() {
+        Date currentDate = new Date();
+        createdAt = currentDate;
+        updatedAt = currentDate;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
 }

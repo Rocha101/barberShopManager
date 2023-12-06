@@ -1,6 +1,7 @@
 package com.barbershop.manager.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,14 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Location> locations;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     // getters and setters
 
@@ -141,5 +150,17 @@ public class User {
 
     public void setLocations(List<Location> locations) {
         this.locations = locations;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        Date currentDate = new Date();
+        createdAt = currentDate;
+        updatedAt = currentDate;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }

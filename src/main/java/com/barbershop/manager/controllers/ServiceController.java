@@ -1,8 +1,12 @@
 package com.barbershop.manager.controllers;
 
+import com.barbershop.manager.models.Sale;
 import com.barbershop.manager.models.Service;
 import com.barbershop.manager.repositories.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/service")
+@RequestMapping("/services")
 public class ServiceController {
 
     @Autowired
@@ -29,9 +33,14 @@ public class ServiceController {
         return ResponseEntity.ok(services);
     }
 
+
     @GetMapping
-    public ResponseEntity<List<Service>> getAllServices() {
-        List<Service> services = serviceRepository.findAll();
+    public ResponseEntity<Page<Service>> getAllServices(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Service> services = serviceRepository.findAll(pageable);
         return ResponseEntity.ok(services);
     }
 

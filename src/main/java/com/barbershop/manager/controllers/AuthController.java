@@ -50,7 +50,7 @@ public class AuthController {
 
             Map<String, Object> response = new HashMap<>();
             response.put("token", token);
-            response.put("user", user);
+            response.put("user", existingUser.get());
 
             return ResponseEntity.ok(response);
         } else {

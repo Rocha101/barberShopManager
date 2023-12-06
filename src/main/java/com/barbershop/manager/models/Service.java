@@ -1,6 +1,7 @@
 package com.barbershop.manager.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,14 @@ public class Service {
     @ManyToOne
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     // getters and setters
 
@@ -80,5 +89,17 @@ public class Service {
 
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        Date currentDate = new Date();
+        createdAt = currentDate;
+        updatedAt = currentDate;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }

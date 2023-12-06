@@ -1,6 +1,7 @@
 package com.barbershop.manager.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,13 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private List<Schedule> schedules;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
+    private Date updatedAt;
 
     // getters and setters
 
@@ -69,5 +77,17 @@ public class Customer {
 
     public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        Date currentDate = new Date();
+        createdAt = currentDate;
+        updatedAt = currentDate;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 }
