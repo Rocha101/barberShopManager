@@ -14,6 +14,7 @@ public class User {
 
     private String username;
     private String password;
+    @Column(nullable = true)
     private String phone;
     private String startTime;
     private String endTime;
